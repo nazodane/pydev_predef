@@ -3184,7 +3184,14 @@ class ops:
          '''Rearrange geometry on a selected surface to avoid skinny faces
          '''
       
-
+      def bevel(offset=0.0, segments=1, vertex_only=False):
+          '''Edge Bevel
+             Arguments:
+             @offset (flaot): Offset
+             @segments (int): Segments, Segments for curved edge
+             @vertex_only (bool):Vertex only, Bevel only vertices
+          '''
+          
       def blend_from_shape(shape='', blend=1.0, add=False):
          '''Blend in shape from a shape key
             Arguments:
