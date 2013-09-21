@@ -1,0 +1,170 @@
+'''Property Definitions (bpy.props)
+   This module defines properties to extend blenders internal data, the result of these functions is used to assign properties to classes registered with blender and can't be used directly.
+   
+'''
+
+
+def BoolProperty(name="", description="", default=False, options={'ANIMATABLE'}, subtype='NONE', update=None):
+   '''Returns a new boolean property definition.
+      
+      Arguments:
+      @name (string): Name used in the user interface.
+      @description (string): Text used for the tooltip and api documentation.
+      @options (set): Enumerator in ['HIDDEN', 'SKIP_SAVE', 'ANIMATABLE'].
+      @subtype (string): Enumerator in ['UNSIGNED', 'PERCENTAGE', 'FACTOR', 'ANGLE', 'TIME', 'DISTANCE', 'NONE'].
+      @update (function): function to be called when this value is modified,This function must take 2 values (self, context) and return None.
+      
+
+   '''
+
+
+def BoolVectorProperty(name="", description="", default=(False, False, False), options={'ANIMATABLE'}, subtype='NONE', size=3, update=None):
+   '''Returns a new vector boolean property definition.
+      
+      Arguments:
+      @name (string): Name used in the user interface.
+      @description (string): Text used for the tooltip and api documentation.
+      @default (sequence): sequence of booleans the length of *size*.
+      @options (set): Enumerator in ['HIDDEN', 'SKIP_SAVE', 'ANIMATABLE'].
+      @subtype (string): Enumerator in ['COLOR', 'TRANSLATION', 'DIRECTION', 'VELOCITY', 'ACCELERATION', 'MATRIX', 'EULER', 'QUATERNION', 'AXISANGLE', 'XYZ', 'COLOR_GAMMA', 'LAYER', 'NONE'].
+      @size (int): Vector dimensions in [1, and 32].
+      @update (function): function to be called when this value is modified,This function must take 2 values (self, context) and return None.
+      
+
+   '''
+
+
+def CollectionProperty(items, type="", description="", default="", options={'ANIMATABLE'}):
+   '''Returns a new collection property definition.
+      
+      Arguments:
+      @type (class): A subclass of bpy.types.PropertyGroup.
+      @name (string): Name used in the user interface.
+      @description (string): Text used for the tooltip and api documentation.
+      @options (set): Enumerator in ['HIDDEN', 'SKIP_SAVE', 'ANIMATABLE'].
+
+   '''
+
+
+def EnumProperty(items, name="", description="", default="", options={'ANIMATABLE'}, update=None):
+   '''Returns a new enumerator property definition.
+      
+      Arguments:
+      @name (string): Name used in the user interface.
+      @description (string): Text used for the tooltip and api documentation.
+      @default (string or set): The default value for this enum, A string when *ENUM_FLAG*is disabled otherwise a set which may only contain string identifiers
+      used in *items*.
+      
+      @options (set): Enumerator in ['HIDDEN', 'SKIP_SAVE', 'ANIMATABLE', 'ENUM_FLAG'].
+      @items (sequence of string triplets or a function): sequence of enum items formatted:[(identifier, name, description, number), ...] where the identifier is used
+      for python access and other values are used for the interface.
+      Note the item is optional.
+      For dynamic values a callback can be passed which returns a list in
+      the same format as the static list.
+      This function must take 2 arguments (self, context)
+      
+      @update (function): function to be called when this value is modified,This function must take 2 values (self, context) and return None.
+      
+
+   '''
+
+
+def FloatProperty(name="", description="", default=0.0, min=sys.float_info.min, max=sys.float_info.max, soft_min=sys.float_info.min, soft_max=sys.float_info.max, step=3, precision=2, options={'ANIMATABLE'}, subtype='NONE', unit='NONE', update=None):
+   '''Returns a new float property definition.
+      
+      Arguments:
+      @name (string): Name used in the user interface.
+      @description (string): Text used for the tooltip and api documentation.
+      @options (set): Enumerator in ['HIDDEN', 'SKIP_SAVE', 'ANIMATABLE'].
+      @subtype (string): Enumerator in ['UNSIGNED', 'PERCENTAGE', 'FACTOR', 'ANGLE', 'TIME', 'DISTANCE', 'NONE'].
+      @unit (string): Enumerator in ['NONE', 'LENGTH', 'AREA', 'VOLUME', 'ROTATION', 'TIME', 'VELOCITY', 'ACCELERATION'].
+      @update (function): function to be called when this value is modified,This function must take 2 values (self, context) and return None.
+      
+
+   '''
+
+
+def FloatVectorProperty(name="", description="", default=(0.0, 0.0, 0.0), min=sys.float_info.min, max=sys.float_info.max, soft_min=sys.float_info.min, soft_max=sys.float_info.max, step=3, precision=2, options={'ANIMATABLE'}, subtype='NONE', size=3, update=None):
+   '''Returns a new vector float property definition.
+      
+      Arguments:
+      @name (string): Name used in the user interface.
+      @description (string): Text used for the tooltip and api documentation.
+      @default (sequence): sequence of floats the length of *size*.
+      @options (set): Enumerator in ['HIDDEN', 'SKIP_SAVE', 'ANIMATABLE'].
+      @subtype (string): Enumerator in ['COLOR', 'TRANSLATION', 'DIRECTION', 'VELOCITY', 'ACCELERATION', 'MATRIX', 'EULER', 'QUATERNION', 'AXISANGLE', 'XYZ', 'COLOR_GAMMA', 'LAYER', 'NONE'].
+      @unit (string): Enumerator in ['NONE', 'LENGTH', 'AREA', 'VOLUME', 'ROTATION', 'TIME', 'VELOCITY', 'ACCELERATION'].
+      @size (int): Vector dimensions in [1, and 32].
+      @update (function): function to be called when this value is modified,This function must take 2 values (self, context) and return None.
+      
+
+   '''
+
+
+def IntProperty(name="", description="", default=0, min=-sys.maxint, max=sys.maxint, soft_min=-sys.maxint, soft_max=sys.maxint, step=1, options={'ANIMATABLE'}, subtype='NONE', update=None):
+   '''Returns a new int property definition.
+      
+      Arguments:
+      @name (string): Name used in the user interface.
+      @description (string): Text used for the tooltip and api documentation.
+      @options (set): Enumerator in ['HIDDEN', 'SKIP_SAVE', 'ANIMATABLE'].
+      @subtype (string): Enumerator in ['UNSIGNED', 'PERCENTAGE', 'FACTOR', 'ANGLE', 'TIME', 'DISTANCE', 'NONE'].
+      @update (function): function to be called when this value is modified,This function must take 2 values (self, context) and return None.
+      
+
+   '''
+
+
+def IntVectorProperty(name="", description="", default=(0, 0, 0), min=-sys.maxint, max=sys.maxint, soft_min=-sys.maxint, soft_max=sys.maxint, options={'ANIMATABLE'}, subtype='NONE', size=3, update=None):
+   '''Returns a new vector int property definition.
+      
+      Arguments:
+      @name (string): Name used in the user interface.
+      @description (string): Text used for the tooltip and api documentation.
+      @default (sequence): sequence of ints the length of *size*.
+      @options (set): Enumerator in ['HIDDEN', 'SKIP_SAVE', 'ANIMATABLE'].
+      @subtype (string): Enumerator in ['COLOR', 'TRANSLATION', 'DIRECTION', 'VELOCITY', 'ACCELERATION', 'MATRIX', 'EULER', 'QUATERNION', 'AXISANGLE', 'XYZ', 'COLOR_GAMMA', 'LAYER', 'NONE'].
+      @size (int): Vector dimensions in [1, and 32].
+      @update (function): function to be called when this value is modified,This function must take 2 values (self, context) and return None.
+      
+
+   '''
+
+
+def PointerProperty(type="", description="", options={'ANIMATABLE'}, update=None):
+   '''Returns a new pointer property definition.
+      
+      Arguments:
+      @type (class): A subclass of bpy.types.PropertyGroup.
+      @name (string): Name used in the user interface.
+      @description (string): Text used for the tooltip and api documentation.
+      @options (set): Enumerator in ['HIDDEN', 'SKIP_SAVE', 'ANIMATABLE'].
+      @update (function): function to be called when this value is modified,This function must take 2 values (self, context) and return None.
+      
+
+   '''
+
+
+def RemoveProperty(attr):
+   '''Removes a dynamically defined property.
+      
+      Arguments:
+      @attr (string): Property name.
+
+   '''
+
+
+def StringProperty(name="", description="", default="", maxlen=0, options={'ANIMATABLE'}, subtype='NONE', update=None):
+   '''Returns a new string property definition.
+      
+      Arguments:
+      @name (string): Name used in the user interface.
+      @description (string): Text used for the tooltip and api documentation.
+      @options (set): Enumerator in ['HIDDEN', 'SKIP_SAVE', 'ANIMATABLE'].
+      @subtype (string): Enumerator in ['FILE_PATH', 'DIR_PATH', 'FILENAME', 'NONE'].
+      @update (function): function to be called when this value is modified,This function must take 2 values (self, context) and return None.
+      
+
+   '''
+
+
