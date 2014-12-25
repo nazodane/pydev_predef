@@ -45,13 +45,13 @@ class Color:
    
 
    is_wrapped = bool
-   '''True when this object wraps external data (readonly).
+   '''True when this object wraps external data (read-only).
       
    '''
    
 
    owner = None
-   '''The item this is wrapping or None  (readonly).
+   '''The item this is wrapping or None  (read-only).
       
    '''
    
@@ -99,16 +99,18 @@ class Euler:
          Note: the rotation order is not taken into account for this function.
       '''
    
+      pass
    
 
    def rotate(other):
-      '''Rotates the euler a by another mathutils value.
+      '''Rotates the euler by another mathutils value.
          
          Arguments:
          @other (Euler, Quaternion or Matrix): rotation component of mathutils value
    
       '''
    
+      pass
    
 
    def rotate_axis(axis, angle):
@@ -121,6 +123,7 @@ class Euler:
    
       '''
    
+      pass
    
 
    def to_matrix():
@@ -146,10 +149,11 @@ class Euler:
          
       '''
    
+      pass
    
 
    is_wrapped = bool
-   '''True when this object wraps external data (readonly).
+   '''True when this object wraps external data (read-only).
       
    '''
    
@@ -161,25 +165,25 @@ class Euler:
    
 
    owner = None
-   '''The item this is wrapping or None  (readonly).
+   '''The item this is wrapping or None  (read-only).
       
    '''
    
 
    x = float
-   '''Euler X axis in radians.
+   '''Euler axis angle in radians.
       
    '''
    
 
    y = float
-   '''Euler Y axis in radians.
+   '''Euler axis angle in radians.
       
    '''
    
 
    z = float
-   '''Euler Z axis in radians.
+   '''Euler axis angle in radians.
       
    '''
    
@@ -190,6 +194,19 @@ class Matrix:
    '''This object gives access to Matrices in Blender.
       
    '''
+
+   @classmethod
+   def Identity(size):
+      '''Create an identity matrix.
+         
+         Arguments:
+         @size (int): The size of the identity matrix to construct [2, 4].
+   
+         @returns (mathutils.Matrix): A new identity matrix.
+      '''
+   
+      return mathutils.Matrix
+   
 
    @classmethod
    def OrthoProjection(axis, size):
@@ -246,7 +263,7 @@ class Matrix:
          @plane (string): Can be any of the following: ['X', 'Y', 'XY', 'XZ', 'YZ'],where a single axis is for a 2D matrix only.
          
          @size (int): The size of the shear matrix to construct [2, 4].
-         @factor (float or float pair): The factor of shear to apply. For a 3 or 4 *size* matrixpass a pair of floats corrasponding with the *plane* axis.
+         @factor (float or float pair): The factor of shear to apply. For a 3 or 4 *size* matrixpass a pair of floats corresponding with the *plane* axis.
          
    
          @returns (mathutils.Matrix): A new shear matrix.
@@ -268,6 +285,27 @@ class Matrix:
       return mathutils.Matrix
    
 
+   def adjugate():
+      '''Set the matrix to its adjugate.
+         
+         Note: When the matrix cant be adjugated a ValueError exception is raised.
+         (seealso <http://en.wikipedia.org/wiki/Adjugate_matrix>)
+         
+      '''
+   
+      pass
+   
+
+   def adjugated():
+      '''Return an adjugated copy of the matrix.
+         
+         @returns (mathutils.Matrix): the adjugated matrix.
+         Note: When the matrix cant be adjugated a ValueError exception is raised.
+      '''
+   
+      return mathutils.Matrix
+   
+
    def copy():
       '''Returns a copy of this matrix.
          
@@ -278,7 +316,7 @@ class Matrix:
    
 
    def decompose():
-      '''Return the location, rotaion and scale components of this matrix.
+      '''Return the location, rotation and scale components of this matrix.
          
          @returns ((Vector, Quaternion, Vector)): loc, rot, scale triple.
       '''
@@ -289,7 +327,7 @@ class Matrix:
    def determinant():
       '''Return the determinant of a matrix.
          
-         @returns (float): Return a the determinant of a matrix.
+         @returns (float): Return the determinant of a matrix.
          (seealso <http://en.wikipedia.org/wiki/Determinant>)
          
       '''
@@ -306,23 +344,54 @@ class Matrix:
          
       '''
    
+      pass
    
 
-   def invert():
+   def invert(fallback=None):
       '''Set the matrix to its inverse.
          
-         Note: ValueError exception is raised.
+         Arguments:
+         @fallback (Matrix): Set the matrix to this value when the inverse can't be calculated(instead of raising a ValueError exception).
+         
+   
          (seealso <http://en.wikipedia.org/wiki/Inverse_matrix>)
          
       '''
    
+      pass
    
 
-   def inverted():
+   def invert_safe():
+      '''Set the matrix to its inverse, will never error.
+         If degenerated (e.g. zero scale on an axis), add some epsilon to its diagonal, to get an invertible one.
+         If tweaked matrix is still degenerated, set to the identity matrix instead.
+         
+         (seealso <http://en.wikipedia.org/wiki/Inverse_matrix>)
+         
+      '''
+   
+      pass
+   
+
+   def inverted(fallback=None):
       '''Return an inverted copy of the matrix.
          
-         @returns (mathutils.Matrix): the  inverted matrix.
-         Note: ValueError exception is raised.
+         Arguments:
+         @fallback (any): return this value when the inverse can't be calculated(instead of raising a ValueError exception).
+         
+   
+         @returns (mathutils.Matrix): the inverted matrix or fallback when given.
+      '''
+   
+      return mathutils.Matrix
+   
+
+   def inverted_safe():
+      '''Return an inverted copy of the matrix, will never error.
+         If degenerated (e.g. zero scale on an axis), add some epsilon to its diagonal, to get an invertible one.
+         If tweaked matrix is still degenerated, return the identity matrix instead.
+         
+         @returns (mathutils.Matrix): the inverted matrix.
       '''
    
       return mathutils.Matrix
@@ -335,7 +404,24 @@ class Matrix:
          @other (Matrix): value to interpolate with.
          @factor (float): The interpolation value in [0.0, 1.0].
    
-         @returns (mathutils.Matrix): The interpolated rotation.
+         @returns (mathutils.Matrix): The interpolated matrix.
+      '''
+   
+      return mathutils.Matrix
+   
+
+   def normalize():
+      '''Normalize each of the matrix columns.
+         
+      '''
+   
+      pass
+   
+
+   def normalized():
+      '''Return a column normalized matrix
+         
+         @returns (mathutils.Matrix): a column normalized matrix
       '''
    
       return mathutils.Matrix
@@ -346,10 +432,11 @@ class Matrix:
          
       '''
    
+      pass
    
 
    def rotate(other):
-      '''Rotates the matrix a by another mathutils value.
+      '''Rotates the matrix by another mathutils value.
          
          Arguments:
          @other (Euler, Quaternion or Matrix): rotation component of mathutils value
@@ -357,6 +444,7 @@ class Matrix:
          Note: If any of the columns are not unit length this may not have desired results.
       '''
    
+      pass
    
 
    def to_3x3():
@@ -404,9 +492,9 @@ class Matrix:
    
 
    def to_scale():
-      '''Return a the scale part of a 3x3 or 4x4 matrix.
+      '''Return the scale part of a 3x3 or 4x4 matrix.
          
-         @returns (mathutils.Vector): Return a the scale of a matrix.
+         @returns (mathutils.Vector): Return the scale of a matrix.
          Note: This method does not return negative a scale on any axis because it is not possible to obtain this data from the matrix alone.
       '''
    
@@ -414,9 +502,9 @@ class Matrix:
    
 
    def to_translation():
-      '''Return a the translation part of a 4 row matrix.
+      '''Return the translation part of a 4 row matrix.
          
-         @returns (mathutils.Vector): Return a the translation of a matrix.
+         @returns (mathutils.Vector): Return the translation of a matrix.
       '''
    
       return mathutils.Vector
@@ -429,6 +517,7 @@ class Matrix:
          
       '''
    
+      pass
    
 
    def transposed():
@@ -443,50 +532,61 @@ class Matrix:
    def zero():
       '''Set all the matrix values to zero.
          
-         @returns (mathutils.Matrix): an instance of itself
       '''
    
       return mathutils.Matrix
    
 
-   col_size = int
-   '''The column size of the matrix (readonly).
+   col = Matrix Access
+   '''Access the matix by colums, 3x3 and 4x4 only, (read-only).
       
    '''
    
 
    is_negative = bool
-   '''True if this matrix results in a negative scale, 3x3 and 4x4 only, (readonly).
+   '''True if this matrix results in a negative scale, 3x3 and 4x4 only, (read-only).
       
    '''
    
 
    is_orthogonal = bool
-   '''True if this matrix is orthogonal, 3x3 and 4x4 only, (readonly).
+   '''True if this matrix is orthogonal, 3x3 and 4x4 only, (read-only).
+      
+   '''
+   
+
+   is_orthogonal_axis_vectors = bool
+   '''True if this matrix has got orthogonal axis vectors, 3x3 and 4x4 only, (read-only).
       
    '''
    
 
    is_wrapped = bool
-   '''True when this object wraps external data (readonly).
+   '''True when this object wraps external data (read-only).
       
    '''
    
 
    median_scale = float
-   '''The average scale applied to each axis (readonly).
+   '''The average scale applied to each axis (read-only).
       
    '''
    
 
    owner = None
-   '''The item this is wrapping or None  (readonly).
+   '''The item this is wrapping or None  (read-only).
       
    '''
    
 
-   row_size = int
-   '''The row size of the matrix (readonly).
+   row = Matrix Access
+   '''Access the matix by rows (default), (read-only).
+      
+   '''
+   
+
+   translation = mathutils.Vector
+   '''The translation component of the matrix.
       
    '''
    
@@ -503,6 +603,7 @@ class Quaternion:
          
       '''
    
+      pass
    
 
    def conjugated():
@@ -552,7 +653,6 @@ class Quaternion:
    def identity():
       '''Set the quaternion to an identity quaternion.
          
-         @returns (mathutils.Quaternion): an instance of itself.
       '''
    
       return mathutils.Quaternion
@@ -563,6 +663,7 @@ class Quaternion:
          
       '''
    
+      pass
    
 
    def inverted():
@@ -577,7 +678,6 @@ class Quaternion:
    def negate():
       '''Set the quaternion to its negative.
          
-         @returns (mathutils.Quaternion): an instance of itself.
       '''
    
       return mathutils.Quaternion
@@ -588,6 +688,7 @@ class Quaternion:
          
       '''
    
+      pass
    
 
    def normalized():
@@ -600,13 +701,14 @@ class Quaternion:
    
 
    def rotate(other):
-      '''Rotates the quaternion a by another mathutils value.
+      '''Rotates the quaternion by another mathutils value.
          
          Arguments:
          @other (Euler, Quaternion or Matrix): rotation component of mathutils value
    
       '''
    
+      pass
    
 
    def rotation_difference(other):
@@ -632,6 +734,15 @@ class Quaternion:
       '''
    
       return mathutils.Quaternion
+   
+
+   def to_axis_angle():
+      '''Return the axis, angle representation of the quaternion.
+         
+         @returns ((Vector, float) pair): axis, angle.
+      '''
+   
+      return (Vector, float) pair
    
 
    def to_euler(order, euler_compat):
@@ -660,55 +771,55 @@ class Quaternion:
    
 
    angle = float
-   '''angle of the quaternion.
+   '''Angle of the quaternion.
       
    '''
    
 
    axis = mathutils.Vector
-   '''quaternion axis as a vector.
+   '''Quaternion axis as a vector.
       
    '''
    
 
    is_wrapped = bool
-   '''True when this object wraps external data (readonly).
+   '''True when this object wraps external data (read-only).
       
    '''
    
 
    magnitude = float
-   '''Size of the quaternion (readonly).
+   '''Size of the quaternion (read-only).
       
    '''
    
 
    owner = None
-   '''The item this is wrapping or None  (readonly).
+   '''The item this is wrapping or None  (read-only).
       
    '''
    
 
    w = float
-   '''Quaternion W value.
+   '''Quaternion axis value.
       
    '''
    
 
    x = float
-   '''Quaternion X axis.
+   '''Quaternion axis value.
       
    '''
    
 
    y = float
-   '''Quaternion Y axis.
+   '''Quaternion axis value.
       
    '''
    
 
    z = float
-   '''Quaternion Z axis.
+   '''Quaternion axis value.
       
    '''
    
@@ -720,16 +831,85 @@ class Vector:
       
    '''
 
-   def angle(other, fallback):
+   @classmethod
+   def Fill(size, fill=0.0):
+      '''Create a vector of length size with all values set to fill.
+         
+         Arguments:
+         @size (int): The length of the vector to be created.
+         @fill (float): The value used to fill the vector.
+   
+      '''
+   
+      pass
+   
+
+   @classmethod
+   def Linspace(start, stop, size):
+      '''Create a vector of the specified size which is filled with linearly spaced values between start and stop values.
+         
+         Arguments:
+         @start (int): The start of the range used to fill the vector.
+         @stop (int): The end of the range used to fill the vector.
+         @size (int): The size of the vector to be created.
+   
+      '''
+   
+      pass
+   
+
+   @classmethod
+   def Range(start=0, stop, step=1):
+      '''Create a filled with a range of values.
+         
+         Arguments:
+         @start (int): The start of the range used to fill the vector.
+         @stop (int): The end of the range used to fill the vector.
+         @step (int): The step between successive values in the vector.
+   
+      '''
+   
+      pass
+   
+
+   @classmethod
+   def Repeat(vector, size):
+      '''Create a vector by repeating the values in vector until the required size is reached.
+         
+         Arguments:
+         @tuple (mathutils.Vector): The vector to draw values from.
+         @size (int): The size of the vector to be created.
+   
+      '''
+   
+      pass
+   
+
+   def angle(other, fallback=None):
       '''Return the angle between two vectors.
          
          Arguments:
          @other (Vector): another vector to compare the angle with
-         @fallback (any): return this value when the angle cant be calculated(zero length vector)
+         @fallback (any): return this value when the angle can't be calculated(zero length vector)
          
    
          @returns (float): angle in radians or fallback when given
-         Note: Zero length vectors raise an AttributeError.
+         Note: Zero length vectors raise an ValueError.
+      '''
+   
+      return float
+   
+
+   def angle_signed(other, fallback):
+      '''Return the signed angle between two 2D vectors (clockwise is positive).
+         
+         Arguments:
+         @other (Vector): another vector to compare the angle with
+         @fallback (any): return this value when the angle can't be calculated(zero length vector)
+         
+   
+         @returns (float): angle in radians or fallback when given
+         Note: Zero length vectors raise an ValueError.
       '''
    
       return float
@@ -752,11 +932,11 @@ class Vector:
          Arguments:
          @other (Vector): The other vector to perform the cross product with.
    
-         @returns (mathutils.Vector): The cross product.
-         Note: both vectors must be 3D
+         @returns (Vector or float when 2D vectors are used): The cross product.
+         Note: both vectors must be 2D or 3D
       '''
    
-      return mathutils.Vector
+      return Vector or float when 2D vectors are used
    
 
    def dot(other):
@@ -778,7 +958,7 @@ class Vector:
          @other (Vector): value to interpolate with.
          @factor (float): The interpolation value in [0.0, 1.0].
    
-         @returns (mathutils.Vector): The interpolated rotation.
+         @returns (mathutils.Vector): The interpolated vector.
       '''
    
       return mathutils.Vector
@@ -787,27 +967,36 @@ class Vector:
    def negate():
       '''Set all values to their negative.
          
-         @returns (mathutils.Vector): an instance of itself
       '''
    
-      return mathutils.Vector
+      pass
    
 
    def normalize():
       '''Normalize the vector, making the length of the vector always 1.0.
-         .. warning:: Normalizing a vector where all values are zero results
-         in all axis having a nan value (not a number).
+         .. warning:: Normalizing a vector where all values are zero has no effect.
          
          Note: Normalize works for vectors of all sizes,however 4D Vectors w axis is left untouched.
          
       '''
    
+      pass
    
 
    def normalized():
       '''Return a new, normalized vector.
          
          @returns (mathutils.Vector): a normalized copy of the vector
+      '''
+   
+      return mathutils.Vector
+   
+
+   def orthogonal():
+      '''Return a perpendicular vector.
+         
+         @returns (mathutils.Vector): a new vector 90 degrees from this vector.
+         Note: the axis is undefined, only use when any orthogonal vector is acceptable.
       '''
    
       return mathutils.Vector
@@ -837,44 +1026,59 @@ class Vector:
       return mathutils.Vector
    
 
+   def resize(size=3):
+      '''Resize the vector to have size number of elements.
+         
+      '''
+   
+      pass
+   
+
    def resize_2d():
       '''Resize the vector to 2D  (x, y).
          
-         @returns (mathutils.Vector): an instance of itself
       '''
    
-      return mathutils.Vector
+      pass
    
 
    def resize_3d():
       '''Resize the vector to 3D  (x, y, z).
          
-         @returns (mathutils.Vector): an instance of itself
       '''
    
-      return mathutils.Vector
+      pass
    
 
    def resize_4d():
       '''Resize the vector to 4D (x, y, z, w).
          
-         @returns (mathutils.Vector): an instance of itself
+      '''
+   
+      pass
+   
+
+   def resized(size=3):
+      '''Return a resized copy of the vector with size number of elements.
+         
+         @returns (mathutils.Vector): a new vector
       '''
    
       return mathutils.Vector
    
 
    def rotate(other):
-      '''Return vector by a rotation value.
+      '''Rotate the vector by a rotation value.
          
          Arguments:
          @other (Euler, Quaternion or Matrix): rotation component of mathutils value
    
       '''
    
+      pass
    
 
-   def difference(other):
+   def rotation_difference(other):
       '''Returns a quaternion representing the rotational difference between this
          vector and another.
          
@@ -886,6 +1090,21 @@ class Vector:
       '''
    
       return mathutils.Quaternion
+   
+
+   def slerp(other, factor, fallback=None):
+      '''Returns the interpolation of two non-zero vectors (spherical coordinates).
+         
+         Arguments:
+         @other (Vector): value to interpolate with.
+         @factor (float): The interpolation value typically in [0.0, 1.0].
+         @fallback (any): return this value when the vector can't be calculated(zero length vector or direct opposites)
+         
+   
+         @returns (mathutils.Vector): The interpolated vector.
+      '''
+   
+      return mathutils.Vector
    
 
    def to_2d():
@@ -945,10 +1164,11 @@ class Vector:
          
       '''
    
+      pass
    
 
    is_wrapped = bool
-   '''True when this object wraps external data (readonly).
+   '''True when this object wraps external data (read-only).
       
    '''
    
@@ -972,7 +1192,7 @@ class Vector:
    
 
    owner = None
-   '''The item this is wrapping or None  (readonly).
+   '''The item this is wrapping or None  (read-only).
       
    '''
    

@@ -46,6 +46,8 @@ AUD_STATUS_PAUSED = 2 #constant value
 
 AUD_STATUS_PLAYING = 1 #constant value 
 
+AUD_STATUS_STOPPED = 3 #constant value 
+
 def device(*argv):
    '''device()
       Returns the application's Device.
@@ -69,6 +71,7 @@ class Device:
          
       '''
    
+      pass
    
 
    def play(*argv):
@@ -91,6 +94,7 @@ class Device:
          
       '''
    
+      pass
    
 
    def unlock(*argv):
@@ -99,6 +103,7 @@ class Device:
          
       '''
    
+      pass
    
 
    channels = None

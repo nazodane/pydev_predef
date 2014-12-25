@@ -17,6 +17,7 @@ def abspath(path, start=None, library=None):
 
    '''
 
+   pass
 
 def basename(path):
    '''Equivalent to os.path.basename, but skips a "//" prefix.
@@ -24,6 +25,7 @@ def basename(path):
       
    '''
 
+   pass
 
 def clean_name(name, replace='_'):
    '''Returns a name with characters replaced that
@@ -34,6 +36,7 @@ def clean_name(name, replace='_'):
       
    '''
 
+   pass
 
 def display_name(name):
    '''Creates a display string from name to be used menus and the user interface.
@@ -43,6 +46,7 @@ def display_name(name):
       
    '''
 
+   pass
 
 def display_name_from_filepath(name):
    '''Returns the path stripped of directory and extension,
@@ -50,6 +54,7 @@ def display_name_from_filepath(name):
       
    '''
 
+   pass
 
 def ensure_ext(filepath, ext, case_sensitive=False):
    '''Return the path with the extension added if it is not already set.
@@ -60,6 +65,7 @@ def ensure_ext(filepath, ext, case_sensitive=False):
 
    '''
 
+   pass
 
 def is_subdir(path, directory):
    '''Returns true if *path* in a subdirectory of *directory*.
@@ -67,6 +73,7 @@ def is_subdir(path, directory):
       
    '''
 
+   pass
 
 def module_names(path, recursive=False):
    '''Return a list of modules which can be imported from *path*.
@@ -80,6 +87,19 @@ def module_names(path, recursive=False):
 
    return list
 
+def reduce_dirs(dirs):
+   '''Given a sequence of directories, remove duplicates and
+      any directories nested in one of the other paths.
+      (Useful for recursive path searching).
+      
+      Arguments:
+      @dirs (sequence): Sequence of directory paths.
+
+      @returns (list): A unique list of paths.
+   '''
+
+   return list
+
 def relpath(path, start=None):
    '''Returns the path relative to the current blend file using the "//" prefix.
       
@@ -89,6 +109,7 @@ def relpath(path, start=None):
 
    '''
 
+   pass
 
 def resolve_ncase(path):
    '''Resolve a case insensitive path on a case sensitive system,
@@ -96,4 +117,5 @@ def resolve_ncase(path):
       
    '''
 
+   pass
 

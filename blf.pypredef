@@ -21,6 +21,7 @@ def aspect(fontid, aspect):
 
    '''
 
+   pass
 
 def blur(fontid, radius):
    '''Set the blur radius for drawing text.
@@ -31,6 +32,7 @@ def blur(fontid, radius):
 
    '''
 
+   pass
 
 def clipping(fontid, xmin, ymin, xmax, ymax):
    '''Set the clipping, enable/disable using CLIPPING.
@@ -44,6 +46,7 @@ def clipping(fontid, xmin, ymin, xmax, ymax):
 
    '''
 
+   pass
 
 def dimensions(fontid, text):
    '''Return the width and height of the text.
@@ -66,6 +69,7 @@ def disable(fontid, option):
 
    '''
 
+   pass
 
 def draw(fontid, text):
    '''Draw text in the current context.
@@ -76,6 +80,7 @@ def draw(fontid, text):
 
    '''
 
+   pass
 
 def enable(fontid, option):
    '''Enable option.
@@ -86,6 +91,7 @@ def enable(fontid, option):
 
    '''
 
+   pass
 
 def load(filename):
    '''Load a new font.
@@ -109,6 +115,7 @@ def position(fontid, x, y, z):
 
    '''
 
+   pass
 
 def rotation(fontid, angle):
    '''Set the text rotation angle, enable/disable using ROTATION.
@@ -119,6 +126,7 @@ def rotation(fontid, angle):
 
    '''
 
+   pass
 
 def shadow(fontid, level, r, g, b, a):
    '''Shadow options, enable/disable using SHADOW .
@@ -133,6 +141,7 @@ def shadow(fontid, level, r, g, b, a):
 
    '''
 
+   pass
 
 def shadow_offset(fontid, x, y):
    '''Set the offset for shadow text.
@@ -144,6 +153,7 @@ def shadow_offset(fontid, x, y):
 
    '''
 
+   pass
 
 def size(fontid, size, dpi):
    '''Set the size and dpi for drawing text.
@@ -155,6 +165,7 @@ def size(fontid, size, dpi):
 
    '''
 
+   pass
 
 def unload(filename):
    '''Unload an existing font.
@@ -164,4 +175,5 @@ def unload(filename):
 
    '''
 
+   pass
 

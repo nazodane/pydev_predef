@@ -1,24 +1,38 @@
 '''Utilities (bpy.utils)
    This module contains utility functions specific to blender but
-   not assosiated with blenders internal data.
+   not associated with blenders internal data.
    
 '''
 
 
-def blend_paths(absolute=False):
+def blend_paths(absolute=False, packed=False, local=False):
    '''Returns a list of paths to external files referenced by the loaded .blend file.
       
       Arguments:
       @absolute (boolean): When true the paths returned are made absolute.
+      @packed (boolean): When true skip file paths for packed data.
+      @local (boolean): When true skip linked library paths.
 
       @returns ([str]): path list.
    '''
 
    return [str]
 
-def keyconfig_set(filepath):
+def escape_identifier(string):
+   '''Simple string escaping function used for animation paths.
+      
+      Arguments:
+      @string (string): text
+
+      @returns (str): The escaped string.
+   '''
+
+   return str
+
+def keyconfig_set(filepath, report=None):
    
 
+   pass
 
 def load_scripts(reload_scripts=False, refresh_scripts=False):
    '''Load scripts and run each modules register function.
@@ -31,6 +45,27 @@ def load_scripts(reload_scripts=False, refresh_scripts=False):
 
    '''
 
+   pass
+
+def make_rna_paths(struct_name, prop_name, enum_name):
+   '''Create RNA "paths" from given names.
+      
+      Arguments:
+      @struct_name (string): Name of a RNA struct (like e.g. "Scene").
+      @prop_name (string): Name of a RNA struct's property.
+      @enum_name (string): Name of a RNA enum identifier.
+
+      @returns (tuple of strings): A triple of three "RNA paths"(most_complete_path, "struct.prop", "struct.prop:'enum'").
+      If no enum_name is given, the third element will always be void.
+      
+   '''
+
+   return tuple of strings
+
+def manual_map():
+   
+
+   pass
 
 def modules_from_path(path, loaded_modules):
    '''Load all modules in a path and return them as a list.
@@ -45,9 +80,10 @@ def modules_from_path(path, loaded_modules):
 
    return list
 
-def preset_find(name, preset_path, display_name=False):
+def preset_find(name, preset_path, display_name=False, ext='.py'):
    
 
+   pass
 
 def preset_paths(subdir):
    '''Returns a list of paths for a specific preset.
@@ -65,11 +101,13 @@ def refresh_script_paths():
       
    '''
 
+   pass
 
 def register_class(cls):
    '''Register a subclass of a blender type in (bpy.types.Panel,
-      bpy.types.Menu, bpy.types.Header, bpy.types.Operator,
-      bpy.types.KeyingSetInfo, bpy.types.RenderEngine).
+      bpy.types.UIList, bpy.types.Menu, bpy.types.Header,
+      bpy.types.Operator, bpy.types.KeyingSetInfo,
+      bpy.types.RenderEngine).
       If the class has a *register* class method it will be called
       before registration.
       .. note::
@@ -78,12 +116,19 @@ def register_class(cls):
       
    '''
 
+   pass
+
+def register_manual_map(manual_hook):
+   
+
+   pass
 
 def register_module(module, verbose=False):
    
 
+   pass
 
-def resource_path(type, major=2, minor=57):
+def resource_path(type, major=bpy.app.version[0], minor=bpy.app.version[1]):
    '''Return the base path for storing system files.
       
       Arguments:
@@ -96,13 +141,27 @@ def resource_path(type, major=2, minor=57):
 
    return str
 
-def script_paths(subdir=None, user_pref=True, all=False):
+def script_path_pref():
+   '''returns the user preference or None
+      
+   '''
+
+   pass
+
+def script_path_user():
+   '''returns the env var and falls back to home dir or None
+      
+   '''
+
+   pass
+
+def script_paths(subdir=None, user_pref=True, check_all=False):
    '''Returns a list of valid script paths.
       
       Arguments:
       @subdir (string): Optional subdir.
       @user_pref (bool): Include the user preference script path.
-      @all (bool): Include local, user and system paths rather just the pathsblender uses.
+      @check_all (bool): Include local, user and system paths rather just the pathsblender uses.
       
 
       @returns (list): script paths.
@@ -114,8 +173,13 @@ def smpte_from_frame(frame, fps=None, fps_base=None):
    '''Returns an SMPTE formatted string from the frame: "HH:MM:SS:FF".
       If *fps* and *fps_base* are not given the current scene is used.
       
+      Arguments:
+      @time (number or timedelta object): time in seconds.
+
+      @returns (float): the frame.
    '''
 
+   return float
 
 def smpte_from_seconds(time, fps=None):
    '''Returns an SMPTE formatted string from the time in seconds: "HH:MM:SS:FF".
@@ -123,6 +187,32 @@ def smpte_from_seconds(time, fps=None):
       
    '''
 
+   pass
+
+def time_from_frame(frame, fps=None, fps_base=None):
+   '''Returns the time from a frame number .
+      If *fps* and *fps_base* are not given the current scene is used.
+      
+      Arguments:
+      @frame (the frame number): number.
+
+      @returns (datetime.timedelta): the time in seconds.
+   '''
+
+   return datetime.timedelta
+
+def time_to_frame(time, fps=None, fps_base=None):
+   '''Returns a float frame number from a time given in seconds or
+      as a datetime.timedelta object.
+      If *fps* and *fps_base* are not given the current scene is used.
+      
+      Arguments:
+      @time (number or a datetime.timedelta object): time in seconds.
+
+      @returns (float): the frame.
+   '''
+
+   return float
 
 def unregister_class(cls):
    '''Unload the python class from blender.
@@ -131,12 +221,19 @@ def unregister_class(cls):
       
    '''
 
+   pass
+
+def unregister_manual_map(manual_hook):
+   
+
+   pass
 
 def unregister_module(module, verbose=False):
    
 
+   pass
 
-def user_resource(type, path='', create=False):
+def user_resource(resource_type, path='', create=False):
    '''Return a user resource path (normally from the users home directory).
       
       Arguments:
@@ -149,8 +246,4 @@ def user_resource(type, path='', create=False):
    '''
 
    return str
-
-def user_script_path():
-   
-
 
